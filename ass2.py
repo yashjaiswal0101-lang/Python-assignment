@@ -8,30 +8,31 @@ def border(func):
 
 class Report:
 
-    template = "General Report"
+    template = "Student Report"
 
-    def __init__(self, title, content):
-        self.title = title
-        self.content = content
-
-    @classmethod
-    def change_template(cls, name):
-        cls.template = name
+    def __init__(self, name, marks, grade):
+        self.name = name
+        self.marks = marks
+        self.grade = grade
 
     def __str__(self):
-        return f"{self.template}\nTitle: {self.title}\nContent: {self.content}"
-
-    def __len__(self):
-        return len(self.content)
+        return (f"{self.template}\n"
+                f"Name  : {self.name}\n"
+                f"Marks : {self.marks}\n"
+                f"Grade : {self.grade}")
 
     @border
     def display(self):
         print(self)
 
-Report.change_template("Sales Report")
 
-r1 = Report("January", "Sales = ₹50,000")
+# User Input
+name = input("Enter Student Name: ")
+marks = int(input("Enter Marks: "))
+grade = input("Enter Grade: ")
 
-r1.display()
+# Create Object
+student = Report(name, marks, grade)
 
-print("Content Length:", len(r1))
+# Display Report
+student.display()
